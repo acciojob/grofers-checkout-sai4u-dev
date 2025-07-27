@@ -1,2 +1,8 @@
+body {
+	padding:0;
+	margin:0;
+}
 
-/* Your CSS Code here. */
+table {
+	text-align: left;
+}
