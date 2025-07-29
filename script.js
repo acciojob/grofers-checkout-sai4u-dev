@@ -1,46 +1,24 @@
-const getSumBtn = document.createElement("button");
-getSumBtn.append("Get Total Price");
-document.body.appendChild(getSumBtn);
+ // Step 1: Select all price elements
+  const priceElements = document.querySelectorAll('.prices');
 
-const getSum = () => {
- // Get all price elements
-  const priceElements = document.querySelectorAll(".price");
-
+  // Step 2: Calculate the total price
   let total = 0;
-
-  // Sum all the prices
-  priceElements.forEach(priceEl => {
-    total += parseFloat(priceEl.textContent) || 0;
+  priceElements.forEach((priceElement) => {
+    const value = parseFloat(priceElement.textContent);
+    if (!isNaN(value)) {
+      total += value;
+    }
   });
 
-  // Check if the total row already exists (to avoid duplicates)
-  const existingTotalRow = document.getElementById("total-row");
-  if (existingTotalRow) {
-    existingTotalRow.remove(); // Remove the old one before adding a new total
-  }
+  // Step 3: Create a new table row and cell for total
+  const totalRow = document.createElement('tr');
+  const totalCell = document.createElement('td');
 
-  // Create new row
-  const totalRow = document.createElement("tr");
-  totalRow.id = "total-row"; // Assign ID for future reference
+  // Step 4: Make total span across both columns
+  totalCell.colSpan = 2;
+  totalCell.textContent = `Total Price: $${total.toFixed(2)}`;
+  totalCell.style.fontWeight = 'bold';
 
-  // Create cell
-  const labelCell = document.createElement("td");
-  labelCell.textContent = "Total";
-  labelCell.style.fontWeight = "bold";
-
-  // Create total value cell
-  const totalCell = document.createElement("td");
-  totalCell.textContent = total;
-  totalCell.style.fontWeight = "bold";
-
-  // Append cells to row
-  totalRow.appendChild(labelCell);
+  // Step 5: Append cell to row, and row to table
   totalRow.appendChild(totalCell);
-
-  // Append the row to the table
-  const table = document.querySelector("table");
-  table.appendChild(totalRow);
-};
-
-getSumBtn.addEventListener("click", getSum);
-
+  document.getElementById('grocery-table').appendChild(totalRow);
