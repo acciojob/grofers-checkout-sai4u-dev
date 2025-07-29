@@ -1,24 +1,34 @@
- // Step 1: Select all price elements
-  const priceElements = document.querySelectorAll('.prices');
+    function calculateTotal() {
+      // Remove existing total row if it exists
+      const existingTotal = document.querySelector('.total-row');
+      if (existingTotal) {
+        existingTotal.remove();
+      }
 
-  // Step 2: Calculate the total price
-  let total = 0;
-  priceElements.forEach((priceElement) => {
-    const value = parseFloat(priceElement.textContent);
-    if (!isNaN(value)) {
-      total += value;
+      // Get all price cells
+      const prices = document.querySelectorAll('.price');
+      let total = 0;
+
+      prices.forEach(cell => {
+        const value = parseFloat(cell.textContent.trim());
+        if (!isNaN(value)) {
+          total += value;
+        }
+      });
+
+      // Create new total row
+      const table = document.getElementById('grocery-table');
+      const totalRow = document.createElement('tr');
+      totalRow.classList.add('total-row');
+
+      const totalCell = document.createElement('td');
+      totalCell.colSpan = 2;
+      totalCell.className = 'total';
+      totalCell.textContent = `Total Price: $${total.toFixed(2)}`;
+
+      totalRow.appendChild(totalCell);
+      table.appendChild(totalRow);
+
+      // Update result in div with id="ans"
+      document.getElementById('ans').textContent = total.toFixed(2);
     }
-  });
-
-  // Step 3: Create a new table row and cell for total
-  const totalRow = document.createElement('tr');
-  const totalCell = document.createElement('td');
-
-  // Step 4: Make total span across both columns
-  totalCell.colSpan = 2;
-  totalCell.textContent = `Total Price: $${total.toFixed(2)}`;
-  totalCell.style.fontWeight = 'bold';
-
-  // Step 5: Append cell to row, and row to table
-  totalRow.appendChild(totalCell);
-  document.getElementById('grocery-table').appendChild(totalRow);

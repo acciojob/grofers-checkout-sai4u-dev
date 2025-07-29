@@ -7,20 +7,40 @@
 </head>
 
 <body>
-    <table id="grocery-table">
-  <tr class="item">
-    <td>Apples</td>
-    <td class="prices">1.50</td>
-  </tr>
-  <tr class="item">
-    <td>Bananas</td>
-    <td class="prices">2.00</td>
-  </tr>
-  <tr class="item">
-    <td>Carrots</td>
-    <td class="prices">3.25</td>
-  </tr>
-</table>
+
+  <h1>Grocery List</h1>
+
+  <table id="grocery-table">
+    <tr>
+      <th>Item</th>
+      <th>Price ($)</th>
+    </tr>
+    <tr class="item">
+      <td>Apples</td>
+      <td class="price" contenteditable="true">0</td>
+    </tr>
+    <tr class="item">
+      <td>Bananas</td>
+      <td class="price" contenteditable="true">0</td>
+    </tr>
+    <tr class="item">
+      <td>Carrots</td>
+      <td class="price" contenteditable="true">0</td>
+    </tr>
+    <tr class="item">
+      <td>Bread</td>
+      <td class="price" contenteditable="true">0</td>
+    </tr>
+    <tr class="item">
+      <td>Milk</td>
+      <td class="price" contenteditable="true">0</td>
+    </tr>
+  </table>
+
+  <button onclick="calculateTotal()">Calculate Total</button>
+
+  <div id="ans"></div>      <!-- Cypress: cy.get("#ans") -->
+
 
     <script type="text/javascript" src="./script.js">
 </script>
